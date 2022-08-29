@@ -25,6 +25,16 @@ class App extends React.Component {
         date: new Date(),
       });
     });
+    this.setState({
+      inputText: "",
+    });
+  };
+
+  handleClose = (i) => {
+    let activity = this.state.activity;
+    this.setState(() => {
+      return activity.splice(i, 1);
+    });
   };
 
   render() {
@@ -35,7 +45,7 @@ class App extends React.Component {
           value={this.state.inputText}
           submit={this.handleSubmit}
         />
-        <ActivityTrack data={this.state.activity} />
+        <ActivityTrack close={this.handleClose} data={this.state.activity} />
       </>
     );
   }

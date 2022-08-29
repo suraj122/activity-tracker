@@ -41,6 +41,8 @@ input {
 .track {
   box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
   margin-top: 32px;
+  position: relative;
+  padding-right: 64px;
 }
 .activity {
   width: 340px;
@@ -61,12 +63,27 @@ input {
   flex-wrap: wrap;
   margin-left: 32px;
 }
-.days li {
+ label {
   border: 1px solid rgba(0, 0, 0, 0.1);
   padding: 12px 20px;
   margin: 6px;
+  display: inline-block;
 }
 .active {
   background-color: #66D3B2;
   color: #fff;
+}
+.checkbox {
+  display: none;
+}
+.checkbox:checked ~ label {
+  background-color: #66D3B2;
+  color: #fff;
+}
+
+.cross {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: red;
 }

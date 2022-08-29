@@ -10,6 +10,9 @@ function ActivityTrack(props) {
             <h3>{item.date.toLocaleString("default", { month: "long" })}</h3>
           </div>
           <Days days={item} />
+          <span onClick={() => props.close(i)} className="cross">
+            X
+          </span>
         </section>
       ))}
     </>
@@ -19,21 +22,6 @@ function ActivityTrack(props) {
 export default ActivityTrack;
 
 class Days extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeIndex: -1,
-      isActive: false,
-    };
-  }
-
-  handleActive = (i) => {
-    this.setState({
-      isActive: !this.state.isActive,
-      activeIndex: i,
-    });
-  };
-
   render() {
     let num = new Date(
       this.props.days.date.getFullYear(),
@@ -48,12 +36,14 @@ class Days extends React.Component {
     return (
       <ul className="days">
         {totaldays.map((item, i) => (
-          <li
-            className={this.state.activeIndex === i ? "active" : ""}
-            onClick={() => this.handleActive(i)}
-            key={i}
-          >
-            {item}
+          <li key={i}>
+            <input
+              className="checkbox"
+              id={i + this.props.days.activityname}
+              name="item"
+              type="checkbox"
+            />
+            <label htmlFor={i + this.props.days.activityname}>{item}</label>
           </li>
         ))}
       </ul>
